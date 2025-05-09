@@ -23,4 +23,12 @@ def connect_to(ssid : str, passwd : str) -> None:
     
     return sta_if.ifconfig()[2]
 
+import machine
+i2c = machine.I2C(sda=machine.Pin(21), scl=machine.Pin(22))
+print(i2c.scan())
+from ssd1306 import SSD1306_I2C
+oled = SSD1306_I2C(128, 32, i2c)
+oled.fill(0)
+oled.text(connect_to("Cooperadora Alumnos", ""), 0, 0)
+oled.show()
 print(connect_to("Cooperadora Alumnos", ""))
