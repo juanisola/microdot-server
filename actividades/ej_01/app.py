@@ -31,8 +31,8 @@ try:
     
     # Mostrar IP en OLED
     oled.fill(0)
-    oled.text(ip, 0, 30)
-    oled.text(ip, 0, 55)
+    oled.text("Accede con", 0, 0)
+    oled.text(ip, 0, 12)
     oled.show()
 except Exception as e:
     print("Error en OLED o WiFi:", e)
