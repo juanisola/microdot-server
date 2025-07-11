@@ -22,9 +22,8 @@ def connect_wifi(ssid, password):
     print('Configuración de red:', sta_if.ifconfig())
     return sta_if.ifconfig()[0]  # Usamos [0] para la IP local
 
-# Configura tus credenciales WiFi aquí
 WIFI_SSID = "Cooperadora Alumnos"
-WIFI_PASSWORD = ""  # ¡No olvides poner tu contraseña!
+WIFI_PASSWORD = "" 
 
 try:
     ip = connect_wifi(WIFI_SSID, WIFI_PASSWORD)
