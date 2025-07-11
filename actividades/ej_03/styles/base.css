@@ -4,12 +4,20 @@ body {
     padding: 0;
     background-color: #f0f8ff;
     color: #000080;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     background-color: #176fc7;
     padding: 20px 0;
     text-align: center;
+    width: 100%;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
@@ -19,6 +27,11 @@ header h1 {
 
 main {
     min-height: 70vh;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 footer {
@@ -26,11 +39,128 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
 
 footer p {
     margin: 5px 0;
+}
+
+.container {
+    text-align: center;
+    background: linear-gradient(90deg, #4f8cff 0%, #176fc7 100%);
+    padding: 24px 20px 20px 20px;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(23, 111, 199, 0.15);
+    max-width: 400px;
+    width: 100%;
+    margin: 32px 0 24px 0;
+    border: none;
+}
+.container h1, #temperature-display, #buzzer-status, #setpoint-value {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(23, 111, 199, 0.15);
+}
+#temperature-value, #buzzer-state {
+    color: #ffeb3b;
+    font-weight: bold;
+    font-size: 26px;
+}
+#setpoint-slider {
+    accent-color: #fff;
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+    height: 8px;
+}
+#setpoint-value {
+    font-size: 20px;
+    color: #176fc7;
+    font-weight: bold;
+    margin-left: 8px;
+}
+#buzzer-status {
+    margin-top: 18px;
+    font-size: 18px;
+    color: #176fc7;
+    font-weight: 600;
+}
+#buzzer-state {
+    color: #f44336;
+    font-weight: bold;
+}
+.container h1 {
+    color: #176fc7;
+    margin-bottom: 18px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Botones aesthetic */
+button {
+    background: linear-gradient(90deg, #4f8cff 0%, #176fc7 100%);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(23, 111, 199, 0.15);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    margin: 0 8px;
+}
+
+button:hover, button:focus {
+    background: linear-gradient(90deg, #176fc7 0%, #4f8cff 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(23, 111, 199, 0.25);
+    outline: none;
+}
+
+.rgb-value {
+    width: 60px;
+    padding: 2.5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.led-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.led-button.on {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.led-button.off {
+    background-color: #f44336;
+    color: white;
+}
+
+.rgb-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.container, .container * {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(23, 111, 199, 0.15);
+}
+#temperature-value, #buzzer-state {
+    color: #ffeb3b !important;
+    font-weight: bold;
+    font-size: 26px;
 }
