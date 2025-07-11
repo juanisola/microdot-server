@@ -3,22 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad #</title>
+    <title>Actividad</title>
     <link rel="stylesheet" href="styles/base.css">
+    <style>
+        .led-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .led-button.on {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .led-button.off {
+            background-color: #f44336;
+            color: white;
+        }
+        .rgb-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .rgb-value {
+            font-size: 24px;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Actividad #</h1>
+        <h1>Actividad {{#}}</h1>
     </header>
     <main>
+        <h1 style="text-align: center;">{{Mensaje}}</h1>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 16px;">
+            <div style="display: flex; gap: 16px;">
+                <button id="led1" class="led-button off" onclick="toggleLed(1)">LED 1</button>
+                <button id="led2" class="led-button off" onclick="toggleLed(2)">LED 2</button>
+                <button id="led3" class="led-button off" onclick="toggleLed(3)">LED 3</button>
+            </div>
+            
+            <div class="rgb-control">
+                <div>
+                    <span style="color: red;">R: </span>
+                    <input type="number" id="redValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+                <div>
+                    <span style="color: green;">G: </span>
+                    <input type="number" id="greenValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+                <div>
+                    <span style="color: blue;">B: </span>
+                    <input type="number" id="blueValue" class="rgb-value" min="0" max="255" value="255">
+                </div>
+                <button onclick="sendRgbValues()" class="led-button" style="margin-top: 15px;">
+                    Aplicar a NeoPixels
+                </button>
+            </div>
+        </div>
     </main>
     <footer>
         <p>Representación Frontal y Visual de Datos</p>
         <p>Computadoras de Aeronaves</p>
-        <p>Alumno XX</p>
+        <p>{{Alumno}}</p>
         <p>Prof. Carlassara Fabrizio</p>
         <p id="fecha"></p>
     </footer>
     <script src="scripts/base.js"></script>
+    <script>
+        async function toggleLed(ledNum) {
+            const button = document.getElementById(`led${ledNum}`);
+            const response = await fetch(`/led/${ledNum}/toggle`);
+            
+            if (response.ok) {
+                const isOn = await response.text() === 'True';
+                button.classList.toggle('on', isOn);
+                button.classList.toggle('off', !isOn);
+            }
+        }
+
+        async function sendRgbValues() {
+    try {
+        const r = document.getElementById('redValue').value;
+        const g = document.getElementById('greenValue').value;
+        const b = document.getElementById('blueValue').value;
+        
+        const response = await fetch(`/neopixel/${r}/${g}/${b}`);
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        alert('Color aplicado correctamente!');
+    } catch (error) {
+        alert('Error al aplicar el color: ' + error.message);
+    }
+}
+    </script>
 </body>
 </html>

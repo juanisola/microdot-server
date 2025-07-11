@@ -34,3 +34,33 @@ footer {
 footer p {
     margin: 5px 0;
 }
+
+/* Botones aesthetic */
+button {
+    background: linear-gradient(90deg, #4f8cff 0%, #176fc7 100%);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(23, 111, 199, 0.15);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    margin: 0 8px;
+}
+button:hover, button:focus {
+    background: linear-gradient(90deg, #176fc7 0%, #4f8cff 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(23, 111, 199, 0.25);
+    outline: none;
+}
+
+.rgb-value {
+    width: 60px;
+    padding: 2.5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
